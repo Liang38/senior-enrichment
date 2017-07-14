@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { updateStudent, addStudent } from '../redux/students'
+
 
 const blankFormState = {
     name: '',
@@ -25,7 +27,6 @@ class StudentForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         this.props.addStudent(this.state)
-        console.log(this.state)
         this.props.history.push('/students')
         this.setState(blankFormState);
     }
@@ -84,15 +85,15 @@ class StudentForm extends React.Component {
 }
 
 import { connect } from 'react-redux'
-import { updateStudent, addStudent } from '../redux/students'
+// import { updateStudent, addStudent } from '../redux/students'
 
 const mapDispatchToProps = (dispatch) => {
     return {
         // updateStudent: () => {
         //     dispatch(updateStudent)
         // },
-        addStudent: () => {
-            dispatch(addStudent)
+        addStudent: (obj) => {
+            dispatch(addStudent(obj))
         }
     }
 }
